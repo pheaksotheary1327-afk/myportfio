@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="km" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ប្រវត្តិនៃការសិក្សា - អេង ចន្ថា (ENG CHANTHA)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Kantumruy Pro for Khmer & Inter for English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Moul&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Kantumruy Pro"', '"Inter"', 'sans-serif'],
+                        moul: ['"Moul"', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Kantumruy Pro', 'Inter', sans-serif;
+            line-height: 1.8;
+        }
+        .khmer-title {
+            font-family: 'Moul', serif;
+            line-height: 1.6;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 selection:bg-indigo-500 selection:text-white">
+
+    <!-- Toast Notification for Copy/Upload Actions -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-slate-900 dark:bg-indigo-600 text-white px-5 py-3.5 rounded-2xl shadow-xl">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 dark:text-white"></i>
+        <span id="toast-message" class="text-sm font-medium">បានចម្លងទុកដោយជោគជ័យ!</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200/80 dark:border-slate-800 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#personal-info" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+                    EC
+                </div>
+                <div>
+                    <span class="font-bold text-base sm:text-lg tracking-tight block leading-none text-slate-900 dark:text-white">អេង ចន្ថា</span>
+                    <span class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">ENG CHANTHA</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
+                <a href="#personal-info" data-i18n="nav-1" class="px-3.5 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">១. ព័ត៌មានផ្ទាល់ខ្លួន</a>
+                <a href="#education" data-i18n="nav-2" class="px-3.5 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">២. ប្រវត្តិសិក្សា</a>
+                <a href="#experience" data-i18n="nav-3" class="px-3.5 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">៣. បទពិសោធន៍ការងារ</a>
+                <a href="#interests" data-i18n="nav-4" class="px-3.5 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">៤. ចំណង់ចំណូលចិត្ត</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="toggleLanguage()" id="lang-btn" class="px-3.5 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/80 border border-indigo-200/60 dark:border-indigo-800/60 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-all" title="Switch Language / ប្តូរភាសា">
+                    <i data-lucide="languages" class="w-4 h-4"></i>
+                    <span id="lang-btn-text">English</span>
+                </button>
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="ប្តូរពណ៌ផ្ទៃ">
+                    <i data-lucide="moon" id="theme-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Bar -->
+        <div class="flex md:hidden overflow-x-auto px-4 py-2 gap-2 border-t border-slate-100 dark:border-slate-800 text-xs font-medium whitespace-nowrap">
+            <a href="#personal-info" data-i18n="nav-1" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">១. ព័ត៌មានផ្ទាល់ខ្លួន</a>
+            <a href="#education" data-i18n="nav-2" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">២. ប្រវត្តិសិក្សា</a>
+            <a href="#experience" data-i18n="nav-3-mob" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">៣. បទពិសោធន៍</a>
+            <a href="#interests" data-i18n="nav-4" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">៤. ចំណង់ចំណូលចិត្ត</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16">
+
+        <!-- ==========================================
+             1. PERSONAL INFORMATION SECTION
+        =========================================== -->
+        <section id="personal-info" class="scroll-mt-24">
+            <div class="relative rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none">
+                <!-- Decorative Header Banner -->
+                <div class="h-36 sm:h-48 bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+                    <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+                    <div data-i18n="sec1-badge" class="absolute top-6 right-6 bg-white/20 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-white/20">
+                        ១. ព័ត៌មានផ្ទាល់ខ្លួន (Personal Information)
+                    </div>
+                </div>
+
+                <div class="px-6 sm:px-10 pb-10">
+                    <!-- Profile Avatar & Quick Header -->
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between -mt-16 sm:-mt-20 mb-8 gap-6">
+                        <div class="flex flex-col sm:flex-row sm:items-end gap-5">
+                            <div class="relative group w-32 h-32 sm:w-40 sm:h-40 rounded-3xl p-1.5 bg-white dark:bg-slate-900 shadow-xl">
+                                <img id="profile-img" 
+                                     src="chantha12.jpg" 
+                                     onerror="this.src='https://placehold.co/400x400/4f46e5/ffffff?text=ENG+CHANTHA'"
+                                     alt="អេង ចន្ថា - ENG CHANTHA" 
+                                     class="w-full h-full object-cover rounded-2xl">
+                            </div>
+
+                            <div class="pt-2 sm:pb-2">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 text-xs font-semibold mb-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                                    <span data-i18n="student-badge">និស្សិតវិទ្យាស្ថានជាតិបណ្តុះបណ្តាលបច្ចេកទេស (NTTI)</span>
+                                </div>
+                                <h1 data-i18n="hero-name" class="khmer-title text-2xl sm:text-4xl text-slate-900 dark:text-white">
+                                    អេង ចន្ថា <span class="font-sans font-bold text-indigo-600 dark:text-indigo-400 text-xl sm:text-2xl block sm:inline sm:ml-2">(ENG CHANTHA)</span>
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3 no-print">
+                            <a href="tel:081828240" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium shadow-md shadow-indigo-500/20 transition-all">
+                                <i data-lucide="phone-call" class="w-4 h-4"></i>
+                                <span data-i18n="btn-call">ទំនាក់ទំនងឥឡូវនេះ</span>
+                            </a>
+                            <a href="mailto:chantha123@gmail.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium transition-all">
+                                <i data-lucide="mail" class="w-4 h-4"></i>
+                                <span data-i18n="btn-email">ផ្ញើអ៊ីមែល</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bio Paragraph Box -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-50/80 to-violet-50/50 dark:from-slate-800/70 dark:to-slate-800/40 border border-indigo-100 dark:border-slate-700/70 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="hidden sm:flex w-10 h-10 rounded-xl bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="quote" class="w-5 h-5"></i>
+                            </div>
+                            <p data-i18n="bio-text" class="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed">
+                                នាងខ្ញុំឈ្មោះ <strong class="text-slate-900 dark:text-white font-bold">អេង ចន្ថា ( ENG CHANTHA )</strong> កើតនៅថ្ងៃទី <strong class="text-indigo-600 dark:text-indigo-400">០២ ខែ មីនា ឆ្នាំ ២០០៨</strong> មានទីកន្លែងកំណើត នៅភូមិ តានន ឃុំ ត្នោត ស្រុក បាទី ខេត្ត តាកែវ ។ លេខទូរសព្ទ <strong class="text-slate-900 dark:text-white">081 828 240</strong> ។ Email : <strong class="text-indigo-600 dark:text-indigo-400">chantha123@gmail.com</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Info Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Date of Birth -->
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-800 flex items-start gap-3.5">
+                            <div class="p-3 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400">
+                                <i data-lucide="calendar-heart" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p data-i18n="dob-label" class="text-xs text-slate-500 dark:text-slate-400 font-medium">ថ្ងៃខែឆ្នាំកំណើត</p>
+                                <p data-i18n="dob-val" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-0.5">០២ មីនា ២០០៨</p>
+                                <p data-i18n="dob-sub" class="text-xs text-slate-500 dark:text-slate-400">02 March 2008</p>
+                            </div>
+                        </div>
+
+                        <!-- Place of Birth -->
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-800 flex items-start gap-3.5">
+                            <div class="p-3 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p data-i18n="pob-label" class="text-xs text-slate-500 dark:text-slate-400 font-medium">ទីកន្លែងកំណើត</p>
+                                <p data-i18n="pob-val" class="text-sm font-bold text-slate-900 dark:text-white mt-0.5">ភូមិតានន ឃុំត្នោត</p>
+                                <p data-i18n="pob-sub" class="text-xs text-slate-500 dark:text-slate-400">ស្រុកបាទី ខេត្តតាកែវ</p>
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div onclick="copyText('081 828 240', 'phone')" class="cursor-pointer group p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-indigo-50/50 dark:hover:bg-slate-800 border border-slate-200/60 dark:border-slate-800 transition-colors flex items-start justify-between gap-2">
+                            <div class="flex items-start gap-3.5">
+                                <div class="p-3 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p data-i18n="phone-label" class="text-xs text-slate-500 dark:text-slate-400 font-medium">លេខទូរសព្ទ</p>
+                                    <p class="text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-0.5">081 828 240</p>
+                                    <p data-i18n="click-copy" class="text-xs text-indigo-600 dark:text-indigo-400">ចុចដើម្បីចម្លងទុក</p>
+                                </div>
+                            </div>
+                            <i data-lucide="copy" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors"></i>
+                        </div>
+
+                        <!-- Email -->
+                        <div onclick="copyText('chantha123@gmail.com', 'email')" class="cursor-pointer group p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-indigo-50/50 dark:hover:bg-slate-800 border border-slate-200/60 dark:border-slate-800 transition-colors flex items-start justify-between gap-2">
+                            <div class="flex items-start gap-3.5 min-w-0">
+                                <div class="p-3 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 shrink-0">
+                                    <i data-lucide="at-sign" class="w-5 h-5"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p data-i18n="email-label" class="text-xs text-slate-500 dark:text-slate-400 font-medium">អ៊ីមែល (Email)</p>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-white mt-0.5 truncate">chantha123@gmail.com</p>
+                                    <p data-i18n="click-copy" class="text-xs text-indigo-600 dark:text-indigo-400">ចុចដើម្បីចម្លងទុក</p>
+                                </div>
+                            </div>
+                            <i data-lucide="copy" class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 shrink-0 transition-colors"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             2. EDUCATION SECTION (WITH PHOTOS)
+        =========================================== -->
+        <section id="education" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">2. Education History</span>
+                    <h2 class="khmer-title text-2xl sm:text-3xl text-slate-900 dark:text-white flex items-center gap-3">
+                        <i data-lucide="graduation-cap" class="w-8 h-8 text-indigo-600 dark:text-indigo-400"></i>
+                        <span data-i18n="sec2-title">២. ប្រវត្តិនៃការសិក្សា (Education)</span>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Education Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- 1. Primary School -->
+                <article class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-lg shadow-slate-200/30 dark:shadow-none hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <img id="edu-img-1"
+                             src="primary.jpg"
+                             onerror="this.src='https://placehold.co/800x450/3b82f6/ffffff?text=Primary+School'"
+                             alt="សាលាបឋមសិក្សា អង្គ"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+                        
+                        <!-- Year Badge -->
+                        <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold shadow-lg flex items-center gap-1.5">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            <span data-i18n="edu1-year">ឆ្នាំ 2014 - 2020</span>
+                        </div>
+
+                        <!-- Level Label -->
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span data-i18n="edu1-tag" class="text-xs uppercase tracking-wider text-blue-300 font-semibold block">Primary School • បឋមសិក្សា</span>
+                            <h3 data-i18n="edu1-title" class="text-xl font-bold mt-0.5">សាលាបឋមសិក្សា អង្គ</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p data-i18n="edu1-desc" class="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                            ចាប់ពីឆ្នាំ <strong class="text-slate-900 dark:text-white">2014-2020</strong> នាងខ្ញុំបានសិក្សារៀនសូត្រ នៅ<strong class="text-blue-600 dark:text-blue-400">សាលាបឋមសិក្សា អង្គ</strong> ។
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span class="flex items-center gap-1.5">
+                                <i data-lucide="award" class="w-4 h-4 text-blue-500"></i>
+                                <span data-i18n="edu1-level">កម្រិតបឋមសិក្សា (ថ្នាក់ទី ១ ដល់ ទី ៦)</span>
+                            </span>
+                            <span data-i18n="status-graduated" class="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-medium">បានបញ្ចប់ការសិក្សា</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Secondary School -->
+                <article class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-lg shadow-slate-200/30 dark:shadow-none hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <img id="edu-img-2"
+                             src="secondary.jpg"
+                             onerror="this.src='https://placehold.co/800x450/0d9488/ffffff?text=Secondary+School'"
+                             alt="អនុវិទ្យាល័យ"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+
+                        <!-- Year Badge -->
+                        <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl bg-teal-600 text-white text-xs font-bold shadow-lg flex items-center gap-1.5">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            <span data-i18n="edu2-year">ឆ្នាំ 2020 - 2023</span>
+                        </div>
+
+                        <!-- Level Label -->
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span data-i18n="edu2-tag" class="text-xs uppercase tracking-wider text-teal-300 font-semibold block">Secondary School • អនុវិទ្យាល័យ</span>
+                            <h3 data-i18n="edu2-title" class="text-xl font-bold mt-0.5">អនុវិទ្យាល័យ</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p data-i18n="edu2-desc" class="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                            ចាប់ពីឆ្នាំ <strong class="text-slate-900 dark:text-white">2020-2023</strong> នាងខ្ញុំបានសិក្សារៀនសូត្រនៅ<strong class="text-teal-600 dark:text-teal-400">អនុវិទ្យាល័យអង្គ</strong> ។
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span class="flex items-center gap-1.5">
+                                <i data-lucide="award" class="w-4 h-4 text-teal-500"></i>
+                                <span data-i18n="edu2-level">កម្រិតមធ្យមសិក្សាបឋមភូមិ (ថ្នាក់ទី ៧ ដល់ ទី ៩)</span>
+                            </span>
+                            <span data-i18n="status-graduated" class="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-medium">បានបញ្ចប់ការសិក្សា</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. High School -->
+                <article class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-lg shadow-slate-200/30 dark:shadow-none hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <img id="edu-img-3"
+                             src="highschool.jpg"
+                             onerror="this.src='https://placehold.co/800x450/4f46e5/ffffff?text=High+School'"
+                             alt="វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+
+                        <!-- Year Badge -->
+                        <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold shadow-lg flex items-center gap-1.5">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            <span data-i18n="edu3-year">ឆ្នាំ 2023 - 2026</span>
+                        </div>
+
+                        <!-- Level Label -->
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span data-i18n="edu3-tag" class="text-xs uppercase tracking-wider text-indigo-300 font-semibold block">High School • វិទ្យាល័យ</span>
+                            <h3 data-i18n="edu3-title" class="text-xl font-bold mt-0.5">វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p data-i18n="edu3-desc" class="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                            ចាប់ពីឆ្នាំ <strong class="text-slate-900 dark:text-white">2023-2026</strong> នាងខ្ញុំបានសិក្សារៀនសូត្រនៅ<strong class="text-indigo-600 dark:text-indigo-400">វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា</strong> ។
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span class="flex items-center gap-1.5">
+                                <i data-lucide="award" class="w-4 h-4 text-indigo-500"></i>
+                                <span data-i18n="edu3-level">កម្រិតមធ្យមសិក្សាទុតិយភូមិ (ថ្នាក់ទី ១០ ដល់ ទី ១២)</span>
+                            </span>
+                            <span data-i18n="status-graduated" class="px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-medium">បានបញ្ចប់ការសិក្សា</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. University (NTTI) -->
+                <article class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border-2 border-indigo-500/40 dark:border-indigo-500/40 shadow-xl shadow-indigo-500/5 hover:border-indigo-600 transition-all duration-300 flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <img id="edu-img-4"
+                             src="sakol.jpg"
+                             onerror="this.src='https://placehold.co/800x450/7c3aed/ffffff?text=NTTI+University'"
+                             alt="NTTI (National Technical Training Institute)"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent"></div>
+
+                        <!-- Year Badge -->
+                        <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xs font-bold shadow-lg flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span data-i18n="edu4-year">បច្ចុប្បន្ន (កំពុងសិក្សា)</span>
+                        </div>
+
+                        <!-- Level Label -->
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span data-i18n="edu4-tag" class="text-xs uppercase tracking-wider text-violet-300 font-semibold block">University • ឧត្តមសិក្សា</span>
+                            <h3 data-i18n="edu4-title" class="text-xl font-bold mt-0.5">NTTI (National Technical Training Institute)</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <p data-i18n="edu4-desc" class="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                            សព្វថ្ងៃខ្ញុំកំពុងសិក្សារៀនសូត្រនៅ <strong class="text-violet-600 dark:text-violet-400">NTTI (National Technical Training Institute)</strong> - វិទ្យាស្ថានជាតិបណ្តុះបណ្តាលបច្ចេកទេស ។
+                        </p>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span class="flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-4 h-4 text-violet-500"></i>
+                                <span data-i18n="edu4-level">ជំនាញបច្ចេកទេស និងព័ត៌មានវិទ្យា</span>
+                            </span>
+                            <span data-i18n="status-studying" class="px-2.5 py-1 rounded-full bg-violet-100 dark:bg-violet-950/80 text-violet-700 dark:text-violet-300 font-semibold">កំពុងសិក្សា</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. WORK EXPERIENCE SECTION
+        =========================================== -->
+        <section id="experience" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">3. Work Experience & Academic Projects</span>
+                    <h2 class="khmer-title text-2xl sm:text-3xl text-slate-900 dark:text-white flex items-center gap-3">
+                        <i data-lucide="briefcase" class="w-8 h-8 text-indigo-600 dark:text-indigo-400"></i>
+                        <span data-i18n="sec3-title">៣. បទពិសោធន៍ការងារ (Work Experience)</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Experience Card 1 -->
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-md shadow-slate-200/30 dark:shadow-none flex flex-col justify-between space-y-4">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <span data-i18n="exp1-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
+                                បច្ចុប្បន្ន
+                            </span>
+                        </div>
+                        <div>
+                            <h3 data-i18n="exp1-title" class="text-lg font-bold text-slate-900 dark:text-white">ការអនុវត្តគម្រោងសរសេរកូដ និងគេហទំព័រ</h3>
+                            <p data-i18n="exp1-sub" class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">និស្សិតអនុវត្តផ្ទាល់នៅ NTTI</p>
+                        </div>
+                        <p data-i18n="exp1-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            សិក្សា និងអនុវត្តការបង្កើតគេហទំព័រ (Web Development) ដោយប្រើប្រាស់ HTML, CSS និងមូលដ្ឋានគ្រឹះនៃការសរសេរកូដ រួមទាំងការស្រាវជ្រាវមេរៀនបច្ចេកវិទ្យាថ្មីៗ។
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium">HTML & CSS</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium">Web Design</span>
+                    </div>
+                </div>
+
+                <!-- Experience Card 2 -->
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-md shadow-slate-200/30 dark:shadow-none flex flex-col justify-between space-y-4">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                                2023 - 2026
+                            </span>
+                        </div>
+                        <div>
+                            <h3 data-i18n="exp2-title" class="text-lg font-bold text-slate-900 dark:text-white">សកម្មភាពការងារក្រុម និងក្លឹបសិក្សា</h3>
+                            <p data-i18n="exp2-sub" class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា</p>
+                        </div>
+                        <p data-i18n="exp2-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            ចូលរួមសហការក្នុងការងារក្រុម ស្រាវជ្រាវឯកសារមេរៀន ជួយសម្របសម្រួលសកម្មភាពសិក្សាក្នុងថ្នាក់ និងចូលរួមការងារសង្គមនានាក្នុងសាលារៀន។
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
+                        <span data-i18n="exp2-tag1" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium">ការងារជាក្រុម</span>
+                        <span data-i18n="exp2-tag2" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium">ទំនាក់ទំនងល្អ</span>
+                    </div>
+                </div>
+
+                <!-- Experience Card 3 -->
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-md shadow-slate-200/30 dark:shadow-none flex flex-col justify-between space-y-4">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                            </div>
+                            <span data-i18n="exp3-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
+                                ត្រៀមខ្លួនជានិច្ច
+                            </span>
+                        </div>
+                        <div>
+                            <h3 data-i18n="exp3-title" class="text-lg font-bold text-slate-900 dark:text-white">ឱកាសហាត់ការ និងការងារស្ម័គ្រចិត្ត</h3>
+                            <p data-i18n="exp3-sub" class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">ផ្នែកបច្ចេកវិទ្យា និងរដ្ឋបាលទូទៅ</p>
+                        </div>
+                        <p data-i18n="exp3-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            នាងខ្ញុំមានឆន្ទៈខ្ពស់ក្នុងការរៀនសូត្រនូវចំណេះដឹងថ្មីៗ មានភាពស្មោះត្រង់ អត់ធ្មត់ និងត្រៀមខ្លួនរួចជាស្រេចសម្រាប់ការហាត់ការងារ (Internship) ដើម្បីពង្រឹងសមត្ថភាព។
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
+                        <span data-i18n="exp3-tag1" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium">ការរៀនសូត្ររហ័ស</span>
+                        <span data-i18n="exp3-tag2" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium">ការទទួលខុសត្រូវ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. INTERESTS SECTION
+        =========================================== -->
+        <section id="interests" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">4. Hobbies & Interests</span>
+                    <h2 class="khmer-title text-2xl sm:text-3xl text-slate-900 dark:text-white flex items-center gap-3">
+                        <i data-lucide="heart-handshake" class="w-8 h-8 text-indigo-600 dark:text-indigo-400"></i>
+                        <span data-i18n="sec4-title">៤. ចំណង់ចំណូលចិត្ត (Interest)</span>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Main Highlighted Quote Box for Interest -->
+            <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-xl shadow-indigo-500/20">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                    <div class="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0">
+                        <i data-lucide="sparkles" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 data-i18n="int-quote-label" class="text-sm uppercase tracking-wider text-indigo-200 font-semibold mb-1">សកម្មភាពពេលទំនេររបស់នាងខ្ញុំ</h3>
+                        <p data-i18n="int-quote-text" class="text-lg sm:text-xl font-medium leading-relaxed">
+                            « ពេលទំនេរខ្ញុំចូលចិត្តអានសៀវភៅ មើលយូធូប ពីមេរៀនក្នុងការសរសេរកូដបន្ថែម និង មើលវីដេអូអប់រំ កម្សាន្ត មួយចំនួនផងដែរ »
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Visual Interest Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Reading Books -->
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500/50 transition-all shadow-md shadow-slate-200/30 dark:shadow-none">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="book-open" class="w-7 h-7"></i>
+                    </div>
+                    <h3 data-i18n="int1-title" class="text-lg font-bold text-slate-900 dark:text-white mb-2">ការអានសៀវភៅ</h3>
+                    <p data-i18n="int1-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        ចូលចិត្តអានសៀវភៅដើម្បីបង្កើនចំណេះដឹងទូទៅ ការអភិវឌ្ឍខ្លួន និងគំនិតថ្មីៗសម្រាប់ជីវិតសិក្សា។
+                    </p>
+                </div>
+
+                <!-- Coding Tutorials on YouTube -->
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500/50 transition-all shadow-md shadow-slate-200/30 dark:shadow-none">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-100 dark:bg-rose-950/70 text-rose-600 dark:text-rose-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="youtube" class="w-7 h-7"></i>
+                    </div>
+                    <h3 data-i18n="int2-title" class="text-lg font-bold text-slate-900 dark:text-white mb-2">រៀនសរសេរកូដតាម YouTube</h3>
+                    <p data-i18n="int2-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        មើលយូធូប (YouTube) ដើម្បីសិក្សាស្វែងយល់ពីមេរៀនក្នុងការសរសេរកូដបន្ថែម និងបច្ចេកវិទ្យាទំនើបៗ។
+                    </p>
+                </div>
+
+                <!-- Educational & Entertainment Videos -->
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500/50 transition-all shadow-md shadow-slate-200/30 dark:shadow-none">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="clapperboard" class="w-7 h-7"></i>
+                    </div>
+                    <h3 data-i18n="int3-title" class="text-lg font-bold text-slate-900 dark:text-white mb-2">វីដេអូអប់រំ និងកម្សាន្ត</h3>
+                    <p data-i18n="int3-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        ទស្សនាវីដេអូអប់រំផ្តល់គតិបណ្ឌិតល្អៗ និងវីដេអូកម្សាន្តមួយចំនួនដើម្បីលំហែអារម្មណ៍ក្រោយម៉ោងសិក្សា។
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800 mt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-2">
+                <span data-i18n="footer-name" class="font-bold text-slate-900 dark:text-white">អេង ចន្ថា (ENG CHANTHA)</span>
+                <span>•</span>
+                <span data-i18n="footer-role">និស្សិត NTTI</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+                <span data-i18n="footer-phone">ទូរសព្ទ: 081 828 240</span>
+                <span>•</span>
+                <span>Email: chantha123@gmail.com</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Language State & Translations Dictionary
+        window.currentLang = 'km';
+
+        const translations = {
+            km: {
+                'nav-1': '១. ព័ត៌មានផ្ទាល់ខ្លួន',
+                'nav-2': '២. ប្រវត្តិសិក្សា',
+                'nav-3': '៣. បទពិសោធន៍ការងារ',
+                'nav-3-mob': '៣. បទពិសោធន៍',
+                'nav-4': '៤. ចំណង់ចំណូលចិត្ត',
+                'sec1-badge': '១. ព័ត៌មានផ្ទាល់ខ្លួន (Personal Information)',
+                'change-photo': 'ប្តូររូបភាព',
+                'student-badge': 'និស្សិតវិទ្យាស្ថានជាតិបណ្តុះបណ្តាលបច្ចេកទេស (NTTI)',
+                'hero-name': 'អេង ចន្ថា <span class="font-sans font-bold text-indigo-600 dark:text-indigo-400 text-xl sm:text-2xl block sm:inline sm:ml-2">(ENG CHANTHA)</span>',
+                'btn-call': 'ទំនាក់ទំនងឥឡូវនេះ',
+                'btn-email': 'ផ្ញើអ៊ីមែល',
+                'bio-text': 'នាងខ្ញុំឈ្មោះ <strong class="text-slate-900 dark:text-white font-bold">អេង ចន្ថា ( ENG CHANTHA )</strong> កើតនៅថ្ងៃទី <strong class="text-indigo-600 dark:text-indigo-400">០២ ខែ មីនា ឆ្នាំ ២០០៨</strong> មានទីកន្លែងកំណើត នៅភូមិ តានន ឃុំ ចារ ស្រុក បាទី ខេត្ត តាកែវ ។ លេខទូរសព្ទ <strong class="text-slate-900 dark:text-white">081 828 240</strong> ។ Email : <strong class="text-indigo-600 dark:text-indigo-400">chantha123@gmail.com</strong>',
+                'dob-label': 'ថ្ងៃខែឆ្នាំកំណើត',
+                'dob-val': '០២ មីនា ២០០៨',
+                'dob-sub': '02 March 2008',
+                'pob-label': 'ទីកន្លែងកំណើត',
+                'pob-val': 'ភូមិតានន ឃុំចារ',
+                'pob-sub': 'ស្រុកបាទី ខេត្តតាកែវ',
+                'phone-label': 'លេខទូរសព្ទ',
+                'click-copy': 'ចុចដើម្បីចម្លងទុក',
+                'email-label': 'អ៊ីមែល (Email)',
+                'sec2-title': '២. ប្រវត្តិនៃការសិក្សា (Education)',
+                'sec2-hint': 'អ្នកអាចចុចលើប៊ូតុង <strong>"ប្តូររូបភាព"</strong> ដើម្បីដាក់រូបភាពសាលាផ្ទាល់ខ្លួនរបស់អ្នក',
+                'edu1-year': 'ឆ្នាំ 2014 - 2020',
+                'edu1-tag': 'Primary School • បឋមសិក្សា',
+                'edu1-title': 'សាលាបឋមសិក្សា អង្គ',
+                'edu1-desc': 'ចាប់ពីឆ្នាំ <strong class="text-slate-900 dark:text-white">2014-2020</strong> នាងខ្ញុំបានសិក្សារៀនសូត្រ នៅ<strong class="text-blue-600 dark:text-blue-400">សាលាបឋមសិក្សា អង្គ</strong> ។',
+                'edu1-level': 'កម្រិតបឋមសិក្សា (ថ្នាក់ទី ១ ដល់ ទី ៦)',
+                'status-graduated': 'បានបញ្ចប់ការសិក្សា',
+                'edu2-year': 'ឆ្នាំ 2020 - 2023',
+                'edu2-tag': 'Secondary School • អនុវិទ្យាល័យ',
+                'edu2-title': 'អនុវិទ្យាល័យ',
+                'edu2-desc': 'ចាប់ពីឆ្នាំ <strong class="text-slate-900 dark:text-white">2020-2023</strong> នាងខ្ញុំបានសិក្សារៀនសូត្រនៅ<strong class="text-teal-600 dark:text-teal-400">អនុវិទ្យាល័យ</strong> ។',
+                'edu2-level': 'កម្រិតមធ្យមសិក្សាបឋមភូមិ (ថ្នាក់ទី ៧ ដល់ ទី ៩)',
+                'edu3-year': 'ឆ្នាំ 2023 - 2026',
+                'edu3-tag': 'High School • វិទ្យាល័យ',
+                'edu3-title': 'វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា',
+                'edu3-desc': 'ចាប់ពីឆ្នាំ <strong class="text-slate-900 dark:text-white">2023-2026</strong> នាងខ្ញុំបានសិក្សារៀនសូត្រនៅ<strong class="text-indigo-600 dark:text-indigo-400">វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា</strong> ។',
+                'edu3-level': 'កម្រិតមធ្យមសិក្សាទុតិយភូមិ (ថ្នាក់ទី ១០ ដល់ ទី ១២)',
+                'edu4-year': 'បច្ចុប្បន្ន (កំពុងសិក្សា)',
+                'edu4-tag': 'University • ឧត្តមសិក្សា',
+                'edu4-title': 'NTTI (National Technical Training Institute)',
+                'edu4-desc': 'សព្វថ្ងៃខ្ញុំកំពុងសិក្សារៀនសូត្រនៅ <strong class="text-violet-600 dark:text-violet-400">NTTI (National Technical Training Institute)</strong> - វិទ្យាស្ថានជាតិបណ្តុះបណ្តាលបច្ចេកទេស ។',
+                'edu4-level': 'ជំនាញបច្ចេកទេស និងព័ត៌មានវិទ្យា',
+                'status-studying': 'កំពុងសិក្សា',
+                'sec3-title': '៣. បទពិសោធន៍ការងារ (Work Experience)',
+                'exp1-badge': 'បច្ចុប្បន្ន',
+                'exp1-title': 'ការអនុវត្តគម្រោងសរសេរកូដ និងគេហទំព័រ',
+                'exp1-sub': 'និស្សិតអនុវត្តផ្ទាល់នៅ NTTI',
+                'exp1-desc': 'សិក្សា និងអនុវត្តការបង្កើតគេហទំព័រ (Web Development) ដោយប្រើប្រាស់ HTML, CSS និងមូលដ្ឋានគ្រឹះនៃការសរសេរកូដ រួមទាំងការស្រាវជ្រាវមេរៀនបច្ចេកវិទ្យាថ្មីៗ។',
+                'exp2-title': 'សកម្មភាពការងារក្រុម និងក្លឹបសិក្សា',
+                'exp2-sub': 'វិទ្យាល័យ ហ៊ុនសែន ១ មិថុនា',
+                'exp2-desc': 'ចូលរួមសហការក្នុងការងារក្រុម ស្រាវជ្រាវឯកសារមេរៀន ជួយសម្របសម្រួលសកម្មភាពសិក្សាក្នុងថ្នាក់ និងចូលរួមការងារសង្គមនានាក្នុងសាលារៀន។',
+                'exp2-tag1': 'ការងារជាក្រុម',
+                'exp2-tag2': 'ទំនាក់ទំនងល្អ',
+                'exp3-badge': 'ត្រៀមខ្លួនជានិច្ច',
+                'exp3-title': 'ឱកាសហាត់ការ និងការងារស្ម័គ្រចិត្ត',
+                'exp3-sub': 'ផ្នែកបច្ចេកវិទ្យា និងរដ្ឋបាលទូទៅ',
+                'exp3-desc': 'នាងខ្ញុំមានឆន្ទៈខ្ពស់ក្នុងការរៀនសូត្រនូវចំណេះដឹងថ្មីៗ មានភាពស្មោះត្រង់ អត់ធ្មត់ និងត្រៀមខ្លួនរួចជាស្រេចសម្រាប់ការហាត់ការងារ (Internship) ដើម្បីពង្រឹងសមត្ថភាព។',
+                'exp3-tag1': 'ការរៀនសូត្ររហ័ស',
+                'exp3-tag2': 'ការទទួលខុសត្រូវ',
+                'sec4-title': '៤. ចំណង់ចំណូលចិត្ត (Interest)',
+                'int-quote-label': 'សកម្មភាពពេលទំនេររបស់នាងខ្ញុំ',
+                'int-quote-text': '« ពេលទំនេរខ្ញុំចូលចិត្តអានសៀវភៅ មើលយូធូប ពីមេរៀនក្នុងការសរសេរកូដបន្ថែម និង មើលវីដេអូអប់រំ កម្សាន្ត មួយចំនួនផងដែរ »',
+                'int1-title': 'ការអានសៀវភៅ',
+                'int1-desc': 'ចូលចិត្តអានសៀវភៅដើម្បីបង្កើនចំណេះដឹងទូទៅ ការអភិវឌ្ឍខ្លួន និងគំនិតថ្មីៗសម្រាប់ជីវិតសិក្សា។',
+                'int2-title': 'រៀនសរសេរកូដតាម YouTube',
+                'int2-desc': 'មើលយូធូប (YouTube) ដើម្បីសិក្សាស្វែងយល់ពីមេរៀនក្នុងការសរសេរកូដបន្ថែម និងបច្ចេកវិទ្យាទំនើបៗ។',
+                'int3-title': 'វីដេអូអប់រំ និងកម្សាន្ត',
+                'int3-desc': 'ទស្សនាវីដេអូអប់រំផ្តល់គតិបណ្ឌិតល្អៗ និងវីដេអូកម្សាន្តមួយចំនួនដើម្បីលំហែអារម្មណ៍ក្រោយម៉ោងសិក្សា។',
+                'footer-name': 'អេង ចន្ថា (ENG CHANTHA)',
+                'footer-role': 'និស្សិត NTTI',
+                'footer-phone': 'ទូរសព្ទ: 081 828 240'
+            },
+            en: {
+                'nav-1': '1. Personal Info',
+                'nav-2': '2. Education',
+                'nav-3': '3. Work Experience',
+                'nav-3-mob': '3. Experience',
+                'nav-4': '4. Interests',
+                'sec1-badge': '1. Personal Information',
+                'change-photo': 'Change Photo',
+                'student-badge': 'Student at National Technical Training Institute (NTTI)',
+                'hero-name': 'ENG CHANTHA <span class="font-sans font-bold text-indigo-600 dark:text-indigo-400 text-xl sm:text-2xl block sm:inline sm:ml-2">(អេង ចន្ថា)</span>',
+                'btn-call': 'Call Now',
+                'btn-email': 'Send Email',
+                'bio-text': 'My name is <strong class="text-slate-900 dark:text-white font-bold">ENG CHANTHA (អេង ចន្ថា)</strong>, born on <strong class="text-indigo-600 dark:text-indigo-400">March 02, 2008</strong> in Tanon Village, Char Commune, Bati District, Takeo Province. Phone: <strong class="text-slate-900 dark:text-white">081 828 240</strong>. Email: <strong class="text-indigo-600 dark:text-indigo-400">chantha123@gmail.com</strong>.',
+                'dob-label': 'Date of Birth',
+                'dob-val': '02 March 2008',
+                'dob-sub': '០២ មីនា ២០០៨',
+                'pob-label': 'Place of Birth',
+                'pob-val': 'Tanon Village, Char Commune',
+                'pob-sub': 'Bati District, Takeo Province',
+                'phone-label': 'Phone Number',
+                'click-copy': 'Click to copy',
+                'email-label': 'Email Address',
+                'sec2-title': '2. Education Background',
+                'sec2-hint': 'You can click <strong>"Change Photo"</strong> to set your own school photo permanently',
+                'edu1-year': 'Year 2014 - 2020',
+                'edu1-tag': 'Primary School',
+                'edu1-title': 'Ang Primary School',
+                'edu1-desc': 'From <strong class="text-slate-900 dark:text-white">2014 to 2020</strong>, I completed my primary education at <strong class="text-blue-600 dark:text-blue-400">Ang Primary School</strong>.',
+                'edu1-level': 'Primary Education (Grade 1 to 6)',
+                'status-graduated': 'Graduated',
+                'edu2-year': 'Year 2020 - 2023',
+                'edu2-tag': 'Secondary School',
+                'edu2-title': 'Secondary School',
+                'edu2-desc': 'From <strong class="text-slate-900 dark:text-white">2020 to 2023</strong>, I pursued my lower secondary education at <strong class="text-teal-600 dark:text-teal-400">Secondary School</strong>.',
+                'edu2-level': 'Lower Secondary Education (Grade 7 to 9)',
+                'edu3-year': 'Year 2023 - 2026',
+                'edu3-tag': 'High School',
+                'edu3-title': 'Hun Sen 1 Mithona High School',
+                'edu3-desc': 'From <strong class="text-slate-900 dark:text-white">2023 to 2026</strong>, I studied upper secondary education at <strong class="text-indigo-600 dark:text-indigo-400">Hun Sen 1 Mithona High School</strong>.',
+                'edu3-level': 'Upper Secondary Education (Grade 10 to 12)',
+                'edu4-year': 'Present (Studying)',
+                'edu4-tag': 'Higher Education • University',
+                'edu4-title': 'NTTI (National Technical Training Institute)',
+                'edu4-desc': 'Currently, I am pursuing my higher education at <strong class="text-violet-600 dark:text-violet-400">NTTI (National Technical Training Institute)</strong>.',
+                'edu4-level': 'Technical & Information Technology',
+                'status-studying': 'Studying',
+                'sec3-title': '3. Work Experience',
+                'exp1-badge': 'Present',
+                'exp1-title': 'Coding & Web Development Projects',
+                'exp1-sub': 'Hands-on Student Practice at NTTI',
+                'exp1-desc': 'Learning and practicing Web Development using HTML, CSS, and programming fundamentals, while actively researching emerging technologies.',
+                'exp2-title': 'Teamwork & Study Club Activities',
+                'exp2-sub': 'Hun Sen 1 Mithona High School',
+                'exp2-desc': 'Collaborated in student study groups, researched learning materials, helped coordinate classroom activities, and joined school community events.',
+                'exp2-tag1': 'Teamwork',
+                'exp2-tag2': 'Communication',
+                'exp3-badge': 'Ready to Work',
+                'exp3-title': 'Internship & Volunteer Opportunities',
+                'exp3-sub': 'IT & General Administration',
+                'exp3-desc': 'Highly motivated to learn new knowledge, honest, patient, and ready for internship opportunities to strengthen my practical skills.',
+                'exp3-tag1': 'Fast Learner',
+                'exp3-tag2': 'Responsibility',
+                'sec4-title': '4. Interests & Hobbies',
+                'int-quote-label': 'My Free Time Activities',
+                'int-quote-text': '“ In my free time, I enjoy reading books, watching YouTube tutorials to learn more about coding, and watching educational and entertainment videos. ”',
+                'int1-title': 'Reading Books',
+                'int1-desc': 'Enjoy reading books to expand general knowledge, self-development, and fresh ideas for academic life.',
+                'int2-title': 'Learning Coding on YouTube',
+                'int2-desc': 'Watch YouTube tutorials to explore additional programming lessons and modern web technologies.',
+                'int3-title': 'Educational & Entertainment Videos',
+                'int3-desc': 'Watch inspiring educational videos and entertainment content to relax and recharge after study hours.',
+                'footer-name': 'ENG CHANTHA (អេង ចន្ថា)',
+                'footer-role': 'NTTI Student',
+                'footer-phone': 'Phone: 081 828 240'
+            }
+        };
+
+        // Toggle between Khmer and English across the entire app
+        function toggleLanguage() {
+            window.currentLang = window.currentLang === 'km' ? 'en' : 'km';
+            const langDict = translations[window.currentLang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langDict[key]) {
+                    el.innerHTML = langDict[key];
+                }
+            });
+
+            // Update language button label
+            const langBtnText = document.getElementById('lang-btn-text');
+            if (langBtnText) {
+                langBtnText.textContent = window.currentLang === 'km' ? 'English' : 'ភាសាខ្មែរ';
+            }
+
+            // Update document language attribute
+            document.documentElement.lang = window.currentLang;
+
+            showToast(window.currentLang === 'en' ? 'Switched language to English' : 'បានប្តូរមកជាភាសាខ្មែរ');
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            htmlEl.classList.toggle('dark');
+
+            if (htmlEl.classList.contains('dark')) {
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        // Copy text to clipboard using execCommand for iframe compatibility
+        function copyText(text, type) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                if (window.currentLang === 'en') {
+                    showToast(type === 'phone' ? `Copied phone number: ${text}` : `Copied email: ${text}`);
+                } else {
+                    showToast(type === 'phone' ? `បានចម្លងលេខទូរសព្ទ ${text}` : `បានចម្លងអ៊ីមែល ${text}`);
+                }
+            } catch (err) {
+                showToast(window.currentLang === 'en' ? 'Unable to copy' : 'មិនអាចចម្លងបានទេ');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Show custom toast notification
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 2800);
+        }
+    </script>
+
+    <!-- Permanent Image Storage & Lock Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Map image IDs to their corresponding file input IDs
+        const imageControlMap = {
+            'profile-img': 'upload-profile',
+            'edu-img-1': 'upload-edu-1',
+            'edu-img-2': 'upload-edu-2',
+            'edu-img-3': 'upload-edu-3',
+            'edu-img-4': 'upload-edu-4'
+        };
+
+        // Track locked images in memory so they can never be modified again
+        const lockedImages = {};
+
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'eng-chantha-portfolio';
+
+        // Lock UI controls permanently for a specific image ID
+        function lockImageUI(targetImgId, imageDataUrl) {
+            const imgElement = document.getElementById(targetImgId);
+            if (imgElement && imageDataUrl) {
+                imgElement.src = imageDataUrl;
+                imgElement.setAttribute('src', imageDataUrl);
+            }
+
+            lockedImages[targetImgId] = true;
+
+            const inputId = imageControlMap[targetImgId];
+            if (inputId) {
+                const inputEl = document.getElementById(inputId);
+                const labelEl = document.querySelector(`label[for="${inputId}"]`);
+
+                // Permanently disable and remove the file input
+                if (inputEl) {
+                    inputEl.disabled = true;
+                    inputEl.removeAttribute('onchange');
+                    inputEl.remove();
+                }
+
+                // Permanently hide and disable the upload label/button
+                if (labelEl) {
+                    labelEl.removeAttribute('for');
+                    labelEl.classList.add('hidden', 'pointer-events-none');
+                    labelEl.style.display = 'none';
+                }
+            }
+        }
+
+        // Compress and resize image to ensure fast loading and permanent cloud storage compatibility
+        function compressImage(file, maxWidth = 900, quality = 0.8) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > maxWidth) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                        resolve(compressedDataUrl);
+                    };
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Global handler attached to window for the onchange event
+        window.previewImage = async function(event, targetImgId) {
+            const isEn = window.currentLang === 'en';
+            // Strictly block if already changed once
+            if (lockedImages[targetImgId]) {
+                window.showToast(isEn ? 'This photo is permanently locked and cannot be changed again!' : 'រូបភាពនេះត្រូវបានរក្សាទុកជាអចិន្ត្រៃយ៍ និងមិនអាចប្ដូរម្ដងទៀតបានទេ!');
+                return;
+            }
+
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            try {
+                window.showToast(isEn ? 'Saving photo permanently...' : 'កំពុងរក្សាទុករូបភាពជាអចិន្ត្រៃយ៍...');
+                const compressedDataUrl = await compressImage(file);
+
+                // Immediately lock UI and set the image
+                lockImageUI(targetImgId, compressedDataUrl);
+
+                // Save permanently to shared cloud storage if available
+                if (db && currentUser) {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'locked_photos', targetImgId);
+                    await setDoc(docRef, {
+                        imageId: targetImgId,
+                        imageData: compressedDataUrl,
+                        locked: true,
+                        updatedAt: Date.now(),
+                        updatedBy: currentUser.uid
+                    });
+                }
+
+                window.showToast(isEn ? 'Photo permanently saved and locked!' : 'បានរក្សាទុករូបភាពជាអចិន្ត្រៃយ៍ជារៀងរហូត!');
+            } catch (error) {
+                console.error('Error saving permanent image:', error);
+                window.showToast(isEn ? 'Photo updated and locked!' : 'បានប្តូរ និងចាក់សោរូបភាពដោយជោគជ័យ!');
+            }
+        };
+
+        // Initialize cloud storage and sync permanently locked images
+        async function initPermanentStorage() {
+            try {
+                if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+                    return;
+                }
+
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                // Authenticate first before any query (Rule 3)
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                currentUser = auth.currentUser;
+                if (!currentUser) return;
+
+                // Listen to public locked photos collection so all viewers see the permanent photos
+                const photosColRef = collection(db, 'artifacts', appId, 'public', 'data', 'locked_photos');
+                onSnapshot(
+                    photosColRef,
+                    (snapshot) => {
+                        snapshot.forEach((docSnap) => {
+                            const data = docSnap.data();
+                            if (data && data.locked && data.imageData) {
+                                lockImageUI(docSnap.id, data.imageData);
+                            }
+                        });
+                    },
+                    (error) => {
+                        console.error('Error loading permanent photos:', error);
+                    }
+                );
+            } catch (err) {
+                console.error('Storage initialization error:', err);
+            }
+        }
+
+        initPermanentStorage();
+    </script>
+</body>
+</html>
